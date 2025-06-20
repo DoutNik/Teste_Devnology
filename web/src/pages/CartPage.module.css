@@ -1,0 +1,100 @@
+/* CartPage.module.css */
+
+.container {
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.emptyMessage {
+  font-style: italic;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.details {
+  flex: 1;
+}
+
+.removeButton {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.removeButton:hover {
+  background-color: #bb2d3b;
+}
+
+.total {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.checkoutButton {
+  background-color: #198754;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.checkoutButton:hover {
+  background-color: #157347;
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantityControls button {
+  padding: 4px 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.backLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #555;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+
