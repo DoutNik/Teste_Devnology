@@ -11,16 +11,15 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
-console.log('🌀 Pool de PostgreSQL creado');
+console.log('🌀 Pool de PostgreSQL criado');
 
 
-// ✅ Conexión inicial de prueba (sin cerrar el pool)
 pool.query('SELECT NOW()')
   .then(res => {
-    console.log('Conexión exitosa:', res.rows[0]);
+    console.log('Conexão bem-sucedida.', res.rows[0]);
   })
   .catch(err => {
-    console.error('Error al conectar:', err);
+    console.error('Erro ao conectar.', err);
   });
 
 export default pool;

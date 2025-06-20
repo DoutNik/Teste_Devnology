@@ -57,26 +57,26 @@ class _CheckoutFormPageState extends State<CheckoutFormPage> {
     try {
       final CepAddress? fetchedAddress = await CepService.fetchAddress(cep);
       if (fetchedAddress != null) {
-  streetController.text = fetchedAddress.street;
-  neighborhoodController.text = fetchedAddress.neighborhood;
-  cityController.text = fetchedAddress.city;
-  stateController.text = fetchedAddress.state;
+        streetController.text = fetchedAddress.street;
+        neighborhoodController.text = fetchedAddress.neighborhood;
+        cityController.text = fetchedAddress.city;
+        stateController.text = fetchedAddress.state;
 
-  setState(() {
-    formData.address.street = fetchedAddress.street;
-    formData.address.neighborhood = fetchedAddress.neighborhood;
-    formData.address.city = fetchedAddress.city;
-    formData.address.state = fetchedAddress.state;
-  });
+        setState(() {
+          formData.address.street = fetchedAddress.street;
+          formData.address.neighborhood = fetchedAddress.neighborhood;
+          formData.address.city = fetchedAddress.city;
+          formData.address.state = fetchedAddress.state;
+        });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('CEP não encontrado')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('CEP não encontrado')));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Erro ao buscar o CEP')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Erro ao buscar o CEP')));
     } finally {
       setState(() => isLoadingCep = false);
     }
@@ -128,10 +128,10 @@ class _CheckoutFormPageState extends State<CheckoutFormPage> {
 
   void handleSubmit() async {
     if (!_validateAll()) {
-  print('Formulario inválido');
-  return;
-}
-final cart = Provider.of<CartModel>(context, listen: false);
+      print('Formulario inválido');
+      return;
+    }
+    final cart = Provider.of<CartModel>(context, listen: false);
 
     formData.name = nameController.text;
     formData.email = emailController.text;
@@ -152,26 +152,25 @@ final cart = Provider.of<CartModel>(context, listen: false);
     print('Enviando datos del formulario...');
     print(formData.toJson());
 
-
     final success = await OrderService.sendOrder(formData);
 
-if (success) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text('Pedido enviado com sucesso!')),
-  );
-  
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-      builder: (_) => OrderConfirmationPage(formData: formData),
-    ),
-  );
-
-  cart.clear();
-    } else {
+    if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Erro ao enviar o pedido')),
+        const SnackBar(content: Text('Pedido enviado com sucesso!')),
       );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => OrderConfirmationPage(formData: formData),
+        ),
+      );
+
+      cart.clear();
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Erro ao enviar o pedido')));
     }
   }
 
@@ -245,8 +244,10 @@ if (success) {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text('Endereço',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const Text(
+                'Endereço',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
               TextField(
                 controller: cepController,
                 keyboardType: TextInputType.number,
@@ -268,7 +269,8 @@ if (success) {
                         )
                       : IconButton(
                           icon: const Icon(Icons.search),
-                          onPressed: () => fetchAddressByCep(cepController.text),
+                          onPressed: () =>
+                              fetchAddressByCep(cepController.text),
                         ),
                 ),
               ),

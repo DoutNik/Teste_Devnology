@@ -6,9 +6,33 @@ final RegExp _cepRegex = RegExp(r"^\d{5}-?\d{3}$");
 final RegExp _namePartRegex = RegExp(r"^[A-Za-zÀ-ÖØ-öø-ÿ]{2,}$");
 
 const List<String> validStates = [
-  'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO',
-  'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
-  'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  'AC',
+  'AL',
+  'AP',
+  'AM',
+  'BA',
+  'CE',
+  'DF',
+  'ES',
+  'GO',
+  'MA',
+  'MT',
+  'MS',
+  'MG',
+  'PA',
+  'PB',
+  'PR',
+  'PE',
+  'PI',
+  'RJ',
+  'RN',
+  'RS',
+  'RO',
+  'RR',
+  'SC',
+  'SP',
+  'SE',
+  'TO',
 ];
 
 String? validateName(String name) {
@@ -19,10 +43,14 @@ String? validateName(String name) {
   final parts = trimmed.split(RegExp(r'\s+'));
   if (parts.length < 2) return 'Digite o nome completo';
 
-  final validWords = parts.where((part) => _namePartRegex.hasMatch(part)).toList();
-  if (validWords.length < 2) return 'Cada parte do nome deve conter apenas letras';
+  final validWords = parts
+      .where((part) => _namePartRegex.hasMatch(part))
+      .toList();
+  if (validWords.length < 2)
+    return 'Cada parte do nome deve conter apenas letras';
 
-  if (!RegExp(r'^[A-ZÀ-Ö]').hasMatch(parts[0])) return 'O nome deve começar com letra maiúscula';
+  if (!RegExp(r'^[A-ZÀ-Ö]').hasMatch(parts[0]))
+    return 'O nome deve começar com letra maiúscula';
 
   return null;
 }
@@ -78,7 +106,8 @@ Map<String, String> validateAddress(Address address) {
     errors['number'] = 'Número inválido';
   }
 
-  if (address.neighborhood.trim().isEmpty) errors['neighborhood'] = 'Bairro é obrigatório';
+  if (address.neighborhood.trim().isEmpty)
+    errors['neighborhood'] = 'Bairro é obrigatório';
   if (address.city.trim().isEmpty) errors['city'] = 'Cidade é obrigatória';
   if (!validStates.contains(address.state.toUpperCase())) {
     errors['state'] = 'Estado inválido';

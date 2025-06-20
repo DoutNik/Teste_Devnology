@@ -14,43 +14,62 @@ class OrderConfirmationPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
-  children: [
-    const Text('Dados do Pedido', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-    const SizedBox(height: 16),
-    Text('Nome: ${formData.name}'),
-    Text('Email: ${formData.email}'),
-    Text('Telefone: ${formData.phone}'),
-    Text('CPF: ${formData.cpf}'),
-    const SizedBox(height: 16),
-    const Text('Endereço', style: TextStyle(fontWeight: FontWeight.bold)),
-    Text('${formData.address.street}, ${formData.address.number}'),
-    if ((formData.address.complement ?? '').isNotEmpty)
-  Text('Complemento: ${formData.address.complement}'),
+          children: [
+            const Text(
+              'Dados do Pedido',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            Text('Nome: ${formData.name}'),
+            Text('Email: ${formData.email}'),
+            Text('Telefone: ${formData.phone}'),
+            Text('CPF: ${formData.cpf}'),
+            const SizedBox(height: 16),
+            const Text(
+              'Endereço',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('${formData.address.street}, ${formData.address.number}'),
+            if ((formData.address.complement ?? '').isNotEmpty)
+              Text('Complemento: ${formData.address.complement}'),
 
-    Text('${formData.address.neighborhood} - ${formData.address.city}/${formData.address.state}'),
-    Text('CEP: ${formData.address.cep}'),
-    const SizedBox(height: 16),
-    const Text('Produtos:', style: TextStyle(fontWeight: FontWeight.bold)),
-    ...formData.products.map((p) => ListTile(
-          title: Text(p.name),
-          subtitle: Text(p.description ?? ''),
-          trailing: Text('R\$ ${p.price.toStringAsFixed(2)}'),
-        )),
-        const Divider(),
-Text('Total do Pedido:', style: TextStyle(fontWeight: FontWeight.bold)),
-Text('R\$ ${total.toStringAsFixed(2)}'),
+            Text(
+              '${formData.address.neighborhood} - ${formData.address.city}/${formData.address.state}',
+            ),
+            Text('CEP: ${formData.address.cep}'),
+            const SizedBox(height: 16),
+            const Text(
+              'Produtos:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            ...formData.products.map(
+              (p) => ListTile(
+                title: Text(p.name),
+                subtitle: Text(p.description ?? ''),
+                trailing: Text('R\$ ${p.price.toStringAsFixed(2)}'),
+              ),
+            ),
+            const Divider(),
+            Text(
+              'Total do Pedido:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('R\$ ${total.toStringAsFixed(2)}'),
 
-    const SizedBox(height: 24),
-    ElevatedButton.icon(
-      icon: const Icon(Icons.home),
-      label: const Text('Voltar ao Início'),
-      onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-      },
-    ),
-  ],
-),
-
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.home),
+              label: const Text('Voltar ao Início'),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/',
+                  (route) => false,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

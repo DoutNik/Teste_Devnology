@@ -38,6 +38,8 @@ class CartModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  double get totalPrice => _items.entries
-      .fold(0, (total, entry) => total + (entry.key.price * entry.value));
+  double get totalPrice => _items.entries.fold(
+    0,
+    (total, entry) => total + (entry.key.price * entry.value),
+  );
 }

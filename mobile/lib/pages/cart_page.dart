@@ -27,11 +27,14 @@ class CartPage extends StatelessWidget {
                             ? Image.network(
                                 p.image,
                                 width: 50,
-                                errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image),
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(Icons.broken_image),
                               )
                             : const Icon(Icons.image_not_supported),
                         title: Text(p.name),
-                        subtitle: Text('${p.description}\nProveedor: ${p.provider}\nR\$ ${p.price.toStringAsFixed(2)}'),
+                        subtitle: Text(
+                          '${p.description}\nProveedor: ${p.provider}\nR\$ ${p.price.toStringAsFixed(2)}',
+                        ),
                         isThreeLine: true,
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -64,7 +67,10 @@ class CartPage extends StatelessWidget {
                         children: [
                           const Text(
                             'Total:',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             'R\$ ${cart.totalPrice.toStringAsFixed(2)}',

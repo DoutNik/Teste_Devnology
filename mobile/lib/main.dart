@@ -5,13 +5,9 @@ import 'pages/cart_page.dart';
 import 'pages/checkout_page.dart';
 import 'package:mobile/models/cart_model.dart';
 
-
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => CartModel(),
-      child: const MyApp(),
-    ),
+    ChangeNotifierProvider(create: (_) => CartModel(), child: const MyApp()),
   );
 }
 

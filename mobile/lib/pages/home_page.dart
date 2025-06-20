@@ -35,15 +35,20 @@ class _HomePageState extends State<HomePage> {
   void applyFilters() {
     setState(() {
       filteredProducts = allProducts.where((p) {
-        final matchesSearch = p.name.toLowerCase().contains(searchQuery.toLowerCase()) ||
+        final matchesSearch =
+            p.name.toLowerCase().contains(searchQuery.toLowerCase()) ||
             p.description.toLowerCase().contains(searchQuery.toLowerCase());
 
-        final matchesProvider = selectedProvider == 'Todos' || p.provider == selectedProvider;
+        final matchesProvider =
+            selectedProvider == 'Todos' || p.provider == selectedProvider;
 
         final matchesMinPrice = minPrice == null || p.price >= minPrice!;
         final matchesMaxPrice = maxPrice == null || p.price <= maxPrice!;
 
-        return matchesSearch && matchesProvider && matchesMinPrice && matchesMaxPrice;
+        return matchesSearch &&
+            matchesProvider &&
+            matchesMinPrice &&
+            matchesMaxPrice;
       }).toList();
     });
   }
@@ -70,7 +75,10 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Erro: ${snapshot.error}'));
           } else {
-            final providers = ['Todos', ...{...allProducts.map((p) => p.provider)}];
+            final providers = [
+              'Todos',
+              ...{...allProducts.map((p) => p.provider)},
+            ];
 
             return Column(
               children: [
@@ -92,10 +100,12 @@ class _HomePageState extends State<HomePage> {
                               isExpanded: true,
                               value: selectedProvider,
                               items: providers
-                                  .map((provider) => DropdownMenuItem(
-                                        value: provider,
-                                        child: Text(provider),
-                                      ))
+                                  .map(
+                                    (provider) => DropdownMenuItem(
+                                      value: provider,
+                                      child: Text(provider),
+                                    ),
+                                  )
                                   .toList(),
                               onChanged: (value) {
                                 selectedProvider = value!;
@@ -106,7 +116,9 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: TextField(
-                              decoration: const InputDecoration(labelText: 'Min \$'),
+                              decoration: const InputDecoration(
+                                labelText: 'Min \$',
+                              ),
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
                                 minPrice = double.tryParse(value);
@@ -117,7 +129,9 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: TextField(
-                              decoration: const InputDecoration(labelText: 'Max \$'),
+                              decoration: const InputDecoration(
+                                labelText: 'Max \$',
+                              ),
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
                                 maxPrice = double.tryParse(value);
@@ -140,18 +154,26 @@ class _HomePageState extends State<HomePage> {
                             ? Image.network(
                                 p.image,
                                 width: 50,
-                                errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image),
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(Icons.broken_image),
                               )
                             : const Icon(Icons.image_not_supported),
                         title: Text(p.name),
-                        subtitle: Text('${p.description}\nProveedor: ${p.provider}\nR\$ ${p.price.toStringAsFixed(2)}'),
+                        subtitle: Text(
+                          '${p.description}\nProveedor: ${p.provider}\nR\$ ${p.price.toStringAsFixed(2)}',
+                        ),
                         isThreeLine: true,
                         trailing: IconButton(
                           icon: const Icon(Icons.add_shopping_cart),
                           onPressed: () {
                             cart.add(p);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('${p.name} adicionado ao carrinho')),
+                              SnackBar(
+                                content: Text(
+                                  '${p.name} adicionado ao carrinho',
+                                ),
+                                duration: Duration(milliseconds: 1500),
+                              ),
                             );
                           },
                         ),

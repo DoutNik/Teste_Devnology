@@ -17,28 +17,27 @@ class Product {
     required this.provider,
   });
 
-factory Product.fromJson(Map<String, dynamic> json) {
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'].toString(),
+      name: json['name'] ?? '',
+      description: json['description'] ?? '',
+      image: json['image'] ?? '',
+      price: double.tryParse(json['price'].toString()) ?? 0.0,
+      quantity: int.tryParse(json['quantity'].toString()) ?? 0,
+      provider: json['provider'] ?? '',
+    );
+  }
 
-  return Product(
-    id: json['id'].toString(),
-    name: json['name'] ?? '',
-    description: json['description'] ?? '',
-    image: json['image'] ?? '',
-    price: double.tryParse(json['price'].toString()) ?? 0.0,
-    quantity: int.tryParse(json['quantity'].toString()) ?? 0,
-    provider: json['provider'] ?? '',
-  );
-}
-
-Map<String, dynamic> toJson() {
-  return {
-    'id': id,
-    'name': name,
-    'description': description,
-    'image': image,
-    'price': price,
-    'quantity': quantity,
-    'provider': provider,
-  };
-}
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'image': image,
+      'price': price,
+      'quantity': quantity,
+      'provider': provider,
+    };
+  }
 }
